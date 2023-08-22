@@ -103,7 +103,7 @@ Resources:
                   zipHandle.close()
                   print("upload to S3")
                   s3 = boto3.resource('s3')
-                  s3.meta.client.upload_file('/tmp/edge-auth.zip', DestinationBucket, DestinationPrefix+'edge-auth.zip', ExtraArgs={'ACL': 'public-read'} )
+                  s3.meta.client.upload_file('/tmp/edge-auth.zip', DestinationBucket, DestinationPrefix+'edge-auth.zip', ExtraArgs={} )
                   responseData['Status'] = 'SUCCESS'
                   cfnresponse.send(event, context, cfnresponse.SUCCESS, responseData, "CustomResourcePhysicalID")
                   print ('SUCCESS')
