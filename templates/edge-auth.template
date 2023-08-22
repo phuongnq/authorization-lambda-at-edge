@@ -164,7 +164,7 @@ Resources:
   CognitoUserPool:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: !Sub https://s3.amazonaws.com/${TemplatesBucket}/${TemplatesPrefix}cognito-user-pool.template
+      TemplateURL: !Sub https://raw.githubusercontent.com/phuongnq/${TemplatesPrefix}master/templates/cognito-user-pool.template
       Parameters:
         BaseUrl:            !GetAtt CFDistribution.DomainName
         Environment:        !Ref AWS::StackName
@@ -172,7 +172,7 @@ Resources:
   PopulateS3Buckets:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: !Sub https://s3.amazonaws.com/${TemplatesBucket}/${TemplatesPrefix}populate-s3-bucket.template
+      TemplateURL: !Sub https://raw.githubusercontent.com/phuongnq/${TemplatesPrefix}master/templates/populate-s3-bucket.template
       Parameters:
         UserPoolId:         !GetAtt CognitoUserPool.Outputs.UserPoolId
         ClientId:           !GetAtt CognitoUserPool.Outputs.ClientId
@@ -188,7 +188,7 @@ Resources:
   LambdaAtEdge:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL:    !Sub https://s3.amazonaws.com/${TemplatesBucket}/${TemplatesPrefix}lambda-at-edge.template
+      TemplateURL:    !Sub https://raw.githubusercontent.com/phuongnq/${TemplatesPrefix}master/templates/lambda-at-edge.template
       Parameters:
         UserPoolId:     !GetAtt CognitoUserPool.Outputs.UserPoolId
         PublicBucket:   !Ref S3BucketPublic
